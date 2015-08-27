@@ -206,7 +206,13 @@
           };
 
           /* Find the Root Event Count */
-          var rootEventCount = MP.api.funnel(rootEvent, rootEvent);
+          var params = {
+              from: moment().subtract(1, 'months'),
+              to: moment(),
+              length: 14,
+              limit: 200
+            }
+          var rootEventCount = MP.api.funnel(rootEvent, params);
 
 
           $.when(rootEventCount).done(function(eventCount){

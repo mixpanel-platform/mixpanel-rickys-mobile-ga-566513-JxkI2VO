@@ -138,14 +138,11 @@
                 //'(string(properties["Last Event"]) == "' + node.name + '")'
                 events.push({'event': event, 'selector': selector_str });
                 events.push({'event': node.name, 'selector': selector_str});
-                if (node.id != graphData.id){  // If this isn't our root event
-                  parent = node.parent;
-                  while (parent.id !=  graphData.id){
-                    events.push({'event': parent.name, 'selector': selector_str});
-                    parent = parent.parent;
-                  }
-                  events.push(rootEvent);
-                }
+                do {
+                  var parent = node.parent;
+                  events.push({'event': parent.name, 'selector': selector_str});
+                  node = parent
+                } while ( node.parent )
                 events.reverse();
                 promises.push(MP.api.funnel.apply(MP.api, events));
               }

@@ -145,11 +145,9 @@
                     parent = parent.parent;
                   }
                   events.push(rootEvent);
-                  events.reverse();
-                  promises.push(MP.api.funnel.apply(MP.api, events));
-                } else {
-                  promises.push(MP.api.funnel.apply(MP.api, events));
                 }
+                events.reverse();
+                promises.push(MP.api.funnel.apply(MP.api, events));
               }
             });
 

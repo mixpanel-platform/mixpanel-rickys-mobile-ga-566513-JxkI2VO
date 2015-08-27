@@ -167,6 +167,7 @@
                   var rando = randomNum();
                   var conversion = Math.floor(nodes[key] / node.count * 100);
                   var root = Math.floor(nodes[key] / graphData.count * 100);
+                  debugger
                   if (conversion < 2 ) { return };
                   if (node.children) {
                       node.children.push({

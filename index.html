@@ -150,7 +150,8 @@
                 }
                 delete events[events.length -1].selector
                 events.reverse();
-                promises.push(MP.api.funnel.apply(MP.api, events, [params]));
+                events.push(params)
+                promises.push(MP.api.funnel.apply(MP.api, events));
               }
             });
 

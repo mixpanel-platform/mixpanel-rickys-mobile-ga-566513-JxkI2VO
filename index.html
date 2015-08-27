@@ -137,11 +137,11 @@
                 //'(string(properties["Last Event"]) == "' + node.name + '")'
                 events.push({'event': event, 'selector': selector_str });
                 events.push({'event': node.name, 'selector': selector_str});
-                
-                while ( parent ) {
+                do {
                   events.push({'event': parent.name, 'selector': selector_str});
                   parent = node.parent
-                }
+                } while( node.parent )
+                
                 events.reverse();
                 promises.push(MP.api.funnel.apply(MP.api, events));
               }

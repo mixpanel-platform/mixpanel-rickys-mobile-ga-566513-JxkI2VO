@@ -128,7 +128,8 @@
             var params = {
               from: moment().subtract(1, 'months'),
               to: moment(),
-              length: 14,                             // number of days each user has to complete the funnel          
+              length: 14,
+              limit: 200
             }
 
             _.each(_.keys(event_list), function(key) {

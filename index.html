@@ -127,29 +127,30 @@
             var promises = []
 
             _.each(_.keys(event_list), function(key) {
-                var event = event_list[key];
-                var parent;
-                var events = [];
-                if (event != node.name) {
-                  /* Build a list of promises */
-                  debugger
-                  selector_str = '(string(properties["Invited User?"]) == "True")'
-                  
-                  //'(string(properties["Last Event"]) == "' + node.name + '")'
-                  events.push({'event': event, 'selector': selector_str });
-                  events.push({'event': node.name, 'selector': selector_str});
-                  if (node.id != graphData.id){  // If this isn't our root event
-                    parent = node.parent;
-                    while (parent.id !=  graphData.id){
-                      events.push({'event': parent.name, 'selector': selector_str});
-                      parent = parent.parent;
-                    }
-                    events.push(rootEvent);
-                    events.reverse();
-                    promises.push(MP.api.funnel.apply(MP.api, events));
-                  } else {
-                    promises.push(MP.api.funnel(events));
+              var event = event_list[key];
+              var parent;
+              var events = [];
+              if (event != node.name) {
+                /* Build a list of promises */
+                debugger
+                selector_str = '(string(properties["Invited User?"]) == "True")'
+                
+                //'(string(properties["Last Event"]) == "' + node.name + '")'
+                events.push({'event': event, 'selector': selector_str });
+                events.push({'event': node.name, 'selector': selector_str});
+                if (node.id != graphData.id){  // If this isn't our root event
+                  parent = node.parent;
+                  while (parent.id !=  graphData.id){
+                    events.push({'event': parent.name, 'selector': selector_str});
+                    parent = parent.parent;
+                  }
+                  events.push(rootEvent);
+                  events.reverse();
+                  promises.push(MP.api.funnel.apply(MP.api, events));
+                } else {
+                  promises.push(MP.api.funnel(events));
                 }
+              }
             });
 
             Promise.all(promises).then(function(promiseArray){

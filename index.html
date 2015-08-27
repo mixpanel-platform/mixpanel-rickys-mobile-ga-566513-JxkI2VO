@@ -212,9 +212,8 @@
               length: 14,
               limit: 200
             }
+            debugger
           var rootEventCount = MP.api.funnel(rootEvent, params);
-
-
           $.when(rootEventCount).done(function(eventCount){
               var eventTotal = 0;
               _.each(_.values(eventCount[0]), function(count){ eventTotal += count.count});

@@ -126,11 +126,11 @@
             var nodes = {};
             var promises = [];
             var params = {
-              from: moment().subtract(30, 'days'),
+              from: moment().subtract(29, 'days'),
               to: moment(),
               length: 14,
               limit: 200,
-              interval: 31
+              interval: 30
             }
 
             _.each(_.keys(event_list), function(key) {
@@ -208,11 +208,11 @@
 
           /* Find the Root Event Count */
           var params = {
-              from: moment().subtract(30, 'days'),
+              from: moment().subtract(29, 'days'),
               to: moment(),
               length: 14,
               limit: 200,
-              interval: 31
+              interval: 30
             }
           var rootEventCount = MP.api.funnel(rootEvent, params);
           $.when(rootEventCount).done(function(eventCount){

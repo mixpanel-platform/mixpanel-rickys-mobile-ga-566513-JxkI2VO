@@ -133,12 +133,15 @@
                 if (event != node.name) {
                     /* Build a list of promises */
                     debugger
-                    events.push(event);
-                    events.push(node.name);
+                    selector_str = '(string(properties["Invited User?"]) == "True")'
+                    
+                    //'(string(properties["Last Event"]) == "' + node.name + '")'
+                    events.push({'event': event, 'selector': selector_str });
+                    events.push({'event': node.name, 'selector': selector_str});
                     if (node.id != graphData.id){  // If this isn't our root event
                       parent = node.parent;
                       while (parent.id !=  graphData.id){
-                          events.push(parent.name);
+                          events.push({'event': parent.name, 'selector': selector_str});
                           parent = parent.parent;
                       }
                       events.push(rootEvent);

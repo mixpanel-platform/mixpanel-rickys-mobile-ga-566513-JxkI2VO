@@ -147,7 +147,6 @@
                 if (parent) {
                   events.push({'event': parent.name, 'selector': selector_str});
                   parent = parent.parent
-                  console.log(parent)
                 }
                 delete events[events.length -1].selector
                 events.reverse();

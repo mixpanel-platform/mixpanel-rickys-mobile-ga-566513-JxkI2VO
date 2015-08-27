@@ -148,7 +148,7 @@
                   events.reverse();
                   promises.push(MP.api.funnel.apply(MP.api, events));
                 } else {
-                  promises.push(MP.api.funnel(events));
+                  promises.push(MP.api.funnel.apply(MP.api, events));
                 }
               }
             });

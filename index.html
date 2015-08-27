@@ -144,7 +144,7 @@
                 events.push({'event': node.name, 'selector': selector_str});
                 if (parent) {
                   events.push({'event': parent.name, 'selector': selector_str});
-                  parent = node.parent
+                  parent = parent.parent
                   console.log(parent)
                 }
                 events.reverse();

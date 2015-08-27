@@ -151,7 +151,7 @@
                 }
                 delete events[events.length -1].selector
                 events.reverse();
-                promises.push(MP.api.funnel.apply(MP.api, events, params));
+                promises.push(MP.api.funnel.apply(MP.api, [events, params]));
               }
             });
 
@@ -215,6 +215,7 @@
               limit: 200,
               interval: 30
             }
+            
           var rootEventCount = MP.api.funnel(rootEvent, params);
           $.when(rootEventCount).done(function(eventCount){
               var eventTotal = 0;

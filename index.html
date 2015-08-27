@@ -128,7 +128,7 @@
 
             _.each(_.keys(event_list), function(key) {
               var event = event_list[key];
-              var parent;
+              var parent = node.parent;
               var events = [];
               if (event != node.name) {
                 /* Build a list of promises */
@@ -137,10 +137,10 @@
                 //'(string(properties["Last Event"]) == "' + node.name + '")'
                 events.push({'event': event, 'selector': selector_str });
                 events.push({'event': node.name, 'selector': selector_str});
-                while ( node.parent ) {
-                  var parent = node.parent;
+                
+                while ( parent ) {
                   events.push({'event': parent.name, 'selector': selector_str});
-                  node = parent
+                  parent = node.parent
                 }
                 events.reverse();
                 promises.push(MP.api.funnel.apply(MP.api, events));

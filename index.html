@@ -124,7 +124,12 @@
         var nodeQuery = function(event_list, node){
             /* Dict with top counts for each event */
             var nodes = {};
-            var promises = []
+            var promises = [];
+            var params = {
+              from: moment().subtract(1, 'months'),
+              to: moment(),
+              length: 14,                             // number of days each user has to complete the funnel          
+            }
 
             _.each(_.keys(event_list), function(key) {
               var event = event_list[key];
@@ -143,7 +148,7 @@
                   console.log(parent)
                 }
                 events.reverse();
-                promises.push(MP.api.funnel.apply(MP.api, events));
+                promises.push(MP.api.funnel.apply(MP.api, events, params));
               }
             });
 

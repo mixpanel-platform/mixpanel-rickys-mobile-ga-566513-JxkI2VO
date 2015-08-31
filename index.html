@@ -138,13 +138,21 @@
               var parent = node.parent;
               var events = [];
               if (event != node.name) {
+                debugger
                 /* Build a list of promises */
-                selector_str = '(string(properties["Invited User?"]) == "True")'
+                selector_str = '(string(properties["Last Event"]) == "' + node.name + '")'
                 
                 //'(string(properties["Last Event"]) == "' + node.name + '")'
                 events.push({'event': event, 'selector': selector_str });
-                events.push({'event': node.name, 'selector': selector_str});
                 if (parent) {
+                  selector_str = '(string(properties["Last Event"]) == "' + parent.name + '")'
+                }
+                events.push({'event': node.name, 'selector': selector_str});
+                
+                while (parent) {
+                  if(parent.parent){                
+                    selector_str = '(string(properties["Last Event"]) == "' + parent.parent.name + '")'
+                  }
                   events.push({'event': parent.name, 'selector': selector_str});
                   parent = parent.parent
                 }

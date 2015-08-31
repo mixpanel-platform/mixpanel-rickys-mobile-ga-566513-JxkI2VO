@@ -159,7 +159,6 @@
               var parent = node.parent;
               var events = [];
               if (event != node.name) {
-                debugger
                 /* Build a list of promises */
                 selector_str = '(string(properties["Last Event"]) == "' + node.name + '")'
                 
@@ -203,7 +202,6 @@
                   var rando = randomNum();
                   var conversion = Math.floor(nodes[key] / node.count * 100);
                   var root = Math.floor(nodes[key] / graphData.count * 100);
-                  debugger
                   if (conversion < 2 ) { return };
                   if (node.children) {
                       node.children.push({
@@ -250,7 +248,6 @@
           var rootEventCount = MP.api.funnel(rootEvent, params);
           $.when(rootEventCount).done(function(eventCount){
               var eventTotal = 0;
-              debugger
               _.each(_.values(eventCount[0]), function(count){ eventTotal += count.count});
               graphData.count = eventTotal;
               addNode(graphData);

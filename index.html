@@ -29,7 +29,7 @@
       <div id="eventSelect" style="float: left;"></div>
       <div id="dateRange" style="float: right;"></div>
       <div style="clear: both;"></div>
-      <button id="run" value="Run"></button>
+      <button id="run" value="Run" style="margin-left: 10px; display: none;">Run</button>
     <script>
       var params = {
         from: moment().subtract(29, 'days'),
@@ -38,8 +38,10 @@
         limit: 200,
         interval: 90
       }
+      
       MP.api.ready(function() {
         var rootEventSelect = $('#eventSelect').MPEventSelect();
+        
         var date = $('#dateRange').MPDatepicker();
         /* Global Event List */
         var rootEvent;
@@ -211,6 +213,10 @@
         date.on('change', function(e, dates) {                          // Do something when the dates are changed
           params.from = dates.from;
           params.to = dates.to;
+        });
+        
+        rootEventSelect.on('change', function(e, Name){
+          $('#run').show();
         });
         
         $('#run').on('click', function(e){

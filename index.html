@@ -28,7 +28,7 @@
   <body class="mixpanel-platform-body" style="overflow-x:scroll;">
       <div id="eventSelect" style="float: left;"></div>
       <div style="clear: both;"></div>
-      <div id="dateRange" style="float: left;"></div>
+      <div id="dateRange" style="float: right;"></div>
       <div style="clear: both;"></div>
     <script>
       var params = {
@@ -40,7 +40,7 @@
       }
       MP.api.ready(function() {
         var rootEventSelect = $('#eventSelect').MPEventSelect();
-        var date = $('<div>').MPDatepicker();
+        var date = $('#dateRange').MPDatepicker();
         /* Global Event List */
         var rootEvent;
         var objs = {};

@@ -29,6 +29,7 @@
       <div id="eventSelect" style="float: left;"></div>
       <div id="dateRange" style="float: right;"></div>
       <div style="clear: both;"></div>
+      <button id="run" value="Run"></button>
     <script>
       var params = {
         from: moment().subtract(29, 'days'),
@@ -206,7 +207,13 @@
                addNode(graphData);
             });
         }
-        rootEventSelect.on('change', function(rootEventObj){
+        
+        date.on('change', function(e, dates) {                          // Do something when the dates are changed
+          params.from = dates.from;
+          params.to = dates.to;
+        });
+        
+        $('#run').on('click', function(e){
           rootEvent = rootEventSelect.MPEventSelect('value');
           /* This Event Represents the Origin of the User Flow Diagram. */
           graphData = {
@@ -236,12 +243,6 @@
               /* Cache top events */
               objs = events.values();
           });
-          
-        date.on('change', function(e, dates) {                          // Do something when the dates are changed
-          params.from = dates.from;
-          params.to = dates.to;
-        });
-
         });
        });
     </script>

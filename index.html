@@ -202,7 +202,7 @@
                   var rando = randomNum();
                   var conversion = Math.floor(nodes[key] / node.count * 100);
                   var root = Math.floor(nodes[key] / graphData.count * 100);
-                  if (conversion = 0 ) { return };
+                  if (conversion < 1 ) { return };
                   if (node.children) {
                       node.children.push({
                         'name':key,
